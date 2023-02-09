@@ -1,0 +1,511 @@
+/* FONTS */
+@font-face {
+  font-family: "inter";
+  src: url("assets/fonts/inter/Inter-VariableFont_slnt,wght.ttf");
+}
+
+@font-face {
+  font-family: "lora";
+  src: url("assets/fonts/lora/Lora-Italic-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "inconsolata";
+  src: url("assets/fonts/inconsolata/Inconsolata-VariableFont_wdth\,wght.ttf");
+}
+
+/* GLOBAL RESET  */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: inherit;
+  font-weight: 400;
+  color: #2d2d2d;
+  list-style: none;
+  text-decoration: none;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* STYLES START */
+body {
+  min-height: 100vh;
+}
+
+.dictionary {
+  margin: 2.4rem;
+  margin-bottom: 8.5rem;
+}
+
+.dictionary__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dictionary__settings {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  position: relative;
+}
+
+.dictionary__settings > img {
+  color: currentColor;
+}
+
+/* FONT SELECTOR */
+
+.font-selector {
+  margin-right: 3rem;
+}
+
+.font-selector > .btn {
+  position: relative;
+}
+
+.font-selector > .btn::after {
+  content: url(assets/images/icon-arrow-down.svg);
+  position: absolute;
+  top: 0.2rem;
+  right: -2.6rem;
+}
+
+.dropdown {
+  background: #ffffff;
+  box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  position: absolute;
+  top: 6.5rem;
+  z-index: 20;
+}
+
+.dropdown__content {
+  margin: 2.4rem;
+  margin-right: 6.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  cursor: pointer;
+}
+
+.dropdown__item {
+  white-space: nowrap;
+}
+
+.dropdown__item:hover {
+  color: #a445ed !important;
+}
+
+/* THEME TOGGLER */
+.theme-toggler {
+  position: relative;
+  margin-right: -1.3rem;
+}
+
+.theme-toggler::before {
+  content: "";
+  width: 1px;
+  height: 3.2rem;
+  background: #e9e9e9;
+  position: absolute;
+  left: -2.7rem;
+  top: -0.5rem;
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;       
+}
+
+.label {
+  width: 4rem;
+  height: 2rem;
+  background: #757575;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+.ball {
+  width: 1.4rem;
+  height: 1.4rem;
+  background: white;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .label > .ball {
+  transform: translateX(2rem);
+}
+
+/* FORM-INPUT/SEARCHBAR */
+.form {
+  position: relative;
+}
+
+.form > input {
+  min-width: 100%;
+  background: #f4f4f4;
+  border-radius: 1.6rem;
+  border: none;
+  outline: none;
+  margin-top: 5.4rem;
+  margin-bottom: 3.4rem;
+  padding: 1.4rem 2.4rem;
+  position: relative;
+}
+
+.form > input:focus-visible {
+  outline: 1px solid #a445ed;
+}
+
+/* .form > input:focus:invalid:not(:placeholder-shown) {
+  outline: 1px solid red;
+} */
+
+.form > input,
+input::placeholder {
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+  color: #2d2d2d;
+}
+
+.form > input::placeholder {
+  opacity: 0.25;
+}
+
+.form > button {
+  width: 1.555rem;
+  height: 1.555rem;
+  position: absolute;
+  top: 7rem;
+  right: 2rem;
+}
+
+/* RESULTS */
+/* Results header */
+.results > header {
+  margin-bottom: 4.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.results__heading > div {
+  padding-top: 1rem;
+  font-weight: 400;
+  color: #a445ed;
+}
+
+.results svg {
+  width: 4.8rem;
+  height: 4.8rem;
+}
+
+.results svg:hover circle {
+  transition: all 0.3s;
+  opacity: 1;
+}
+
+.results svg:hover path {
+  transition: all 0.3s;
+  fill: #ffffff;
+}
+
+/* Results body  */
+.results__body {
+  position: relative;
+}
+
+.results__body > .heading-2::after {
+  content: "";
+  height: 1px;
+  width: 78%;
+  background-color: #e9e9e9;
+  position: absolute;
+  right: 0;
+  top: 0.8rem;
+}
+
+.results__body > .heading-3 {
+  margin-top: 3.5rem;
+  margin-bottom: 1.6rem;
+}
+
+.results__definitions > .body,
+.quote {
+  padding-left: 2rem;
+}
+
+.results__definitions > .body {
+  position: relative;
+  padding-bottom: 1.3rem;
+}
+
+.results__definitions > .body::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #8f19e8;
+  top: 1rem;
+  left: 0;
+}
+
+.results__synonyms {
+  display: flex;
+  align-items: center;
+  gap: 2.6rem;
+  padding-bottom: 3.2rem;
+}
+
+.results__synonyms > a {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #a445ed;
+}
+
+.results__synonyms > a:hover {
+  border-bottom: 1px solid currentColor;
+}
+
+/* Dictionary footer */
+.dictionary__footer {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  margin-top: 6rem;
+  position: relative;
+}
+
+.dictionary__footer::before {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background: #e9e9e9;
+  position: absolute;
+  top: -2.4rem;
+}
+
+.dictionary__footer > .link {
+  position: relative;
+  text-decoration-color: #757575;
+}
+
+.dictionary__footer > .link::after {
+  content: url(assets/images/icon-new-window.svg);
+  position: absolute;
+  left: 27rem;
+  cursor: pointer;
+}
+
+/* Dark mode */
+body.dark {
+  background-color: #050505;
+}
+
+body.dark .body,
+body.dark .link,
+body.dark .heading-1,
+body.dark .heading-2,
+body.dark .current-selection,
+body.dark .dropdown__item {
+  color: white; 
+}
+
+body.dark .dropdown {
+  background: #1F1F1F;
+  box-shadow: 0px 5px 30px #A445ED;
+}
+
+body.dark .label {
+  background: #A445ED;
+}
+
+body.dark .icon path {
+  stroke: #A445ED;
+}
+
+body.dark .form input {
+  background: #1F1F1F;
+  color: white;
+}
+
+body.dark .form input::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+/* Typography */
+.heading-1,
+.heading-2,
+.current-selection {
+  font-weight: 700;
+}
+
+.heading-3,
+.heading-4 {
+  color: #757575;
+}
+
+.heading-4,
+.link {
+  font-size: 1.4rem;
+  line-height: 1.5rem;
+  text-decoration-line: underline;
+}
+
+.body,
+.quote {
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+}
+
+.heading-1 {
+  font-size: 3.2rem;
+  line-height: 3.4rem;
+}
+
+.heading-2, .phonetics {
+  font-size: 1.8rem;
+  line-height: 1.9rem;
+}
+
+.heading-3 {
+  font-size: 1.6rem;
+  line-height: 1.7rem;
+}
+
+.quote {
+  color: #757575;
+}
+
+.current-selection,
+.dropdown {
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+}
+
+/* Components */
+.btn,
+.btn:link,
+.btn:visited {
+  display: inline-block;
+  text-transform: capitalize;
+  text-decoration: none;
+  line-height: inherit;
+  white-space: nowrap;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* Utilities */
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+/* Error classes/warnings */
+.invalid > input {
+  outline: 1px solid #ff5252 !important;
+  position: relative !important;
+}
+
+.invalid::after {
+  content: "Whoops, that's not a valid word...";
+  position: absolute;
+  left: 0;
+  bottom: 0.5rem;
+  color: #ff5252;
+  font-size: 1.6rem;
+}
+
+.error-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.4rem;
+  text-align: center;
+}
+
+.error-screen > img {
+  max-width: 6.4rem;
+  margin-bottom: 2rem;
+}
+
+.error-screen > p {
+  padding: 0 2rem;
+}
+
+/* Clearfix */
+/* clears the ‘X’ from Internet Explorer */
+input[type="search"]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+input[type="search"]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+
+
+
