@@ -32,13 +32,16 @@ html {
   box-sizing: border-box;
   font-size: 62.5%;
 }
+/* Tablet viewport */
+@media only screen and (min-width: 700px) {
+  html {
+    font-size: 75%;
+  }
+}
 
 body {
   font-family: "Inter", sans-serif;
-}
-
-a {
-  color: inherit;
+  min-height: 100vh;
 }
 
 button {
@@ -48,14 +51,28 @@ button {
 }
 
 /* STYLES START */
-body {
-  min-height: 100vh;
-}
 
 .dictionary {
   margin: 2.4rem;
   margin-bottom: 8.5rem;
 }
+
+/* Tablet viewport */
+@media only screen and (min-width: 700px) {
+  .dictionary {
+    margin: 4rem;
+    margin-bottom: 11.8rem;
+    margin-top: 5rem;
+  }
+}
+/* Desktop viewport */
+@media only screen and (min-width: 1435px) {
+  .dictionary {
+    margin-left: 29rem;
+    margin-right: 29rem;
+  }
+}
+
 
 .dictionary__header {
   display: flex;
@@ -75,7 +92,6 @@ body {
 }
 
 /* FONT SELECTOR */
-
 .font-selector {
   margin-right: 3rem;
 }
@@ -87,8 +103,17 @@ body {
 .font-selector > .btn::after {
   content: url(assets/images/icon-arrow-down.svg);
   position: absolute;
-  top: 0.2rem;
+  top: 3px;
   right: -2.6rem;
+  width: 1.2rem;
+  height: .6rem;
+}
+
+/* Tablet viewport */
+@media only screen and (min-width: 700px) {
+  .font-selector > .btn::after {
+    top: 5px
+  }
 }
 
 .dropdown {
@@ -184,13 +209,16 @@ body {
   position: relative;
 }
 
+/* Desktop viewport */
+@media only screen and (min-width: 1435px) {
+  .form > input {
+    margin-bottom: 7rem;
+  }
+}
+
 .form > input:focus-visible {
   outline: 1px solid #a445ed;
 }
-
-/* .form > input:focus:invalid:not(:placeholder-shown) {
-  outline: 1px solid red;
-} */
 
 .form > input,
 input::placeholder {
@@ -219,12 +247,20 @@ input::placeholder {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: max-content;
 }
 
 .results__heading > div {
   padding-top: 1rem;
   font-weight: 400;
   color: #a445ed;
+}
+
+/* Tablet viewport */
+@media only screen and (min-width: 700px) {
+  .results__heading > div {
+    padding-top: 2rem;
+  }
 }
 
 .results svg {
@@ -295,10 +331,11 @@ input::placeholder {
   font-size: 16px;
   line-height: 20px;
   color: #a445ed;
+  transition: all .2s;
 }
 
 .results__synonyms > a:hover {
-  border-bottom: 1px solid currentColor;
+  opacity: .7;
 }
 
 /* Dictionary footer */
@@ -396,6 +433,14 @@ body.dark .form input::placeholder {
 .heading-1 {
   font-size: 3.2rem;
   line-height: 3.4rem;
+  text-transform: capitalize;
+}
+
+/* Tablet viewport */
+@media only screen and (min-width: 700px) {
+  .heading-1 {
+    font-size: 5.33rem;
+  }
 }
 
 .heading-2, .phonetics {
@@ -482,6 +527,21 @@ body.dark .form input::placeholder {
 
 .error-screen > p {
   padding: 0 2rem;
+}
+
+.no-src {
+  position: relative;
+}
+
+.no-src::after {
+  content: "No sources available";
+  position: absolute;
+  color: rgba(255, 0, 0, 0.668);
+  font-weight: 600;
+  font-size: 1.4rem;
+  top: -2.2rem;
+  top: 7.5rem;
+  right: 0;
 }
 
 /* Clearfix */

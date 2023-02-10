@@ -27,12 +27,7 @@ const nounDefinitions = document.querySelector("#noun-definitions");
 const verbDefinitions = document.querySelector("#verb-definitions");
 const displayExample = document.querySelector("#result-example");
 const displayLink = document.querySelector("#dictionary__link");
-// audio button
-const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
 
-displayButton.addEventListener("click", () => {
-  audio.play();
-})
 // FUNCTIONS
 
 // Event target function (development only)
@@ -49,6 +44,11 @@ fontSelector.addEventListener("click", () => {
     }
   });
 });
+// hide font selector when scrolling
+document.addEventListener("scroll", () => {
+  dropdown.classList.add("visually-hidden");
+})
+
 // Font-changer loop/function NOT IN USE
 for (let font of fonts) {
   font.addEventListener("click", (e) => {
@@ -98,8 +98,10 @@ form.addEventListener("submit", async (e) => {
     // remove visually-hidden class on successful search
     dictionaryMain.classList.remove("visually-hidden");
     dictionaryFooter.classList.remove("visually-hidden");
+    dictionaryMain.classList.remove("no-src");
     //- save dictionary link based off user input and display
     displayLink.innerHTML = `https://en.wiktionary.org/wiki/${input}`;
+    displayLink.href = `https://en.wiktionary.org/wiki/${input}`;
     // Gather and display result data
     displayWord.innerHTML = res.data[0].word;
     // -save phonetics results and display if it exists
@@ -127,28 +129,38 @@ form.addEventListener("submit", async (e) => {
       const verbResults = res.data[0].meanings[1].definitions;
       searchResults(verbResults, verbDefinitions);
     }
+    
+    // - save audio results and play on displayButton click
+    const audioOne = (res.data[0].phonetics[0].audio);
+    const audioTwo = (res.data[0].phonetics[1].audio);
+    const audioThree = (res.data[0].phonetics[2].audio);
+    const audioSources = [audioOne, audioTwo, audioThree];
+    audioSources.sort()
+    const resultAudio = new Audio(audioSources[2]);
+    displayButton.addEventListener("click", () => {
+    resultAudio.play();
+    setTimeout(clearAudio, 3000);
+    });
+    // Clear audio src function
+    clearAudio = () => {
+      resultAudio.src = "";
+    };
+    
     // -save example results and display if it exists
     const resultExample = res.data[0].meanings[1].definitions[0].example;
     if (resultExample) {
       displayExample.innerHTML = resultExample;
     } else displayExample.innerHTML = "";
-    return;
-    // -return invalid if any errors occur
+
+    // Catch and resolve errors
   } catch (e) {
-    console.log(e);
-    // console.log (verbDefinitions);
-    if (e instanceof TypeError) return;
-    // if (e.response.status === 404 || e.response.status === 500 ) 
-    if (e.name === "AxiosError")
-    {
+    // console.log(e);
+    console.dir(e);
+    // Hide elements on network error
+    if (e.name === "AxiosError") {
       dictionaryMain.classList.add("visually-hidden");
       dictionaryFooter.classList.add("visually-hidden");
       errorScreen.classList.remove("visually-hidden");
     }
   }
 });
-
-//  // PlayAudio function
-//  resultButton.addEventListener("click", () => {
-//   console.log("play music");
-// });
